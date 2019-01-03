@@ -3,7 +3,7 @@ package WebService::Auth0;
 use Moo;
 use Module::Runtime qw(use_module);
 
-our $VERSION = '0.001';
+our $VERSION = '0.002';
 
 has ua_handler_class => (
   is=>'ro',
@@ -34,7 +34,7 @@ has client_secret => (is=>'ro', predicate=>'has_client_secret');
 
 sub auth {
   my $self = shift;
-  my %args = $_[0] ? ((ref($_[0])||'') eq 'HASH' ? %$_[0] : @_) : ();
+  my %args = $_[0] ? ((ref($_[0])||'') eq 'HASH' ? %{$_[0]} : @_) : ();
 
   %args = (
     ua => $self->ua,
@@ -52,7 +52,7 @@ sub auth {
 
 sub management {
   my $self = shift;
-  my %args = $_[0] ? ((ref($_[0])||'') eq 'HASH' ? %$_[0] : @_) : ();
+  my %args = $_[0] ? ((ref($_[0])||'') eq 'HASH' ? %{$_[0]} : @_) : ();
 
   %args = (
     ua => $self->ua,
